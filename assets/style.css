@@ -99,7 +99,7 @@ body{
 /* ✅ About 等页面标题自适应缩放 */
 .page-title{
   font-family: var(--font-sans);
-  font-weight: 600;
+  font-weight: 500;
   font-size: clamp(30px, 4vw, 44px);
   letter-spacing: -0.01em;
   line-height: 1.15;
