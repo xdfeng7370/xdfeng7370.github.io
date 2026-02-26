@@ -27,7 +27,6 @@
       font-family: var(--font-sans, inherit);
     }
 
-    /* 标题就是链接：不显示 https://... */
     a.pub-title{
       font-weight: 800;
       text-decoration: underline;
@@ -44,13 +43,13 @@
         <img class="avatar" src="assets/fengxiaodong.jpg" alt="avatar" />
         <span class="brand-name">Xiaodong Feng (冯晓东)</span>
       </div>
+
       <nav class="nav">
         <a href="index.html">About</a>
+        <a href="research.html">Research</a>
         <a class="active" href="publications.html">Publications</a>
-        <a href="students.html">Students</a>
-        <a href="editorships.html">Editorships &amp; Committees</a>
-        <a href="honors.html">Honors</a>
-        <a href="lectures.html">Lectures</a>
+        <a href="talks.html">Talks</a>
+        <a href="assets/CV.pdf" target="_blank" rel="noopener">CV</a>
       </nav>
     </div>
   </header>
@@ -126,7 +125,6 @@
     const submitted = pubs.filter(p=>p.status==="submitted").sort(sortFn);
     const published = pubs.filter(p=>p.status==="published").sort(sortFn);
 
-    // 连续编号：Submitted 从总数倒序，Published 接着倒序
     const total = submitted.length + published.length;
     const subOl = document.getElementById("submittedList");
     const pubOl = document.getElementById("publishedList");
