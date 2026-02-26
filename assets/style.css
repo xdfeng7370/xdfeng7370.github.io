@@ -197,3 +197,19 @@ body{
   .avatar{ width: 36px; height: 36px; }
   .brand-name{ font-size: 17px; }
 }
+
+/* ===== Make desktop tabs sit next to the name (reduce big gap) ===== */
+.topbar-inner{
+  justify-content: flex-start;  /* ✅ 不再 space-between */
+  gap: 26px;                    /* ✅ name 与 tabs 的距离（可调 18~32） */
+}
+
+/* 桌面导航不要被撑到最右，紧跟在名字后面 */
+.nav-desktop{
+  margin-left: 0;
+}
+
+/* hamburger 永远贴右（小屏显示时就像模板） */
+.nav-toggle{
+  margin-left: auto;
+}
