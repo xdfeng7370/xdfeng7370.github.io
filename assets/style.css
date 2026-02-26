@@ -50,7 +50,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: flex-start; /* brand + nav 从左开始排 */
-  gap: 44px;                   /* brand 和 nav 的间距（想更近就 28/36） */
+  gap: 50px;                   /* brand 和 nav 的间距（想更近就 28/36） */
   flex-wrap: wrap;             /* 空间不够时允许换行 */
 }
 
@@ -105,7 +105,7 @@ body{
 /* ✅ 你要的：About 标题字重 600 */
 .page-title{
   font-family: var(--font-sans);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 44px;
   letter-spacing: -0.01em;
   line-height: 1.15;
