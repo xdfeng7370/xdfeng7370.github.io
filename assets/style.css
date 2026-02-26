@@ -1,7 +1,10 @@
 :root{
-  --maxw: 980px;        /* 正文版心宽度 */
-  --heroMax: 680px;     /* 横幅最大宽度（与参考站接近） */
-  --heroH: 260px;       /* ✅ 固定高度：你要改这个最直观 */
+  --pageMax: 980px;        /* 正文版心 */
+  --topbarMax: 1180px;     /* ✅ 顶部导航版心（决定“最左/最右”位置） */
+
+  --heroMaxW: 860px;       /* ✅ 大图最大宽度（现在你觉得太窄就加大这个） */
+  --heroMaxH: 360px;       /* ✅ 大图最大高度（竖图会自动缩小到不超过这个高度） */
+
   --text: #111827;
   --muted: #6b7280;
   --line: #e5e7eb;
@@ -16,7 +19,7 @@ body{
   background: #fff;
 }
 
-/* ========== Top bar ========== */
+/* ===== Top bar (full width background) ===== */
 .topbar{
   position: sticky;
   top: 0;
@@ -24,6 +27,12 @@ body{
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
+}
+
+/* ✅ 关键：让“最左/最右”都落在居中版心里，而不是贴浏览器边 */
+.topbar-inner{
+  max-width: var(--topbarMax);
+  margin: 0 auto;
   padding: 14px 22px;
   display: flex;
   align-items: center;
@@ -46,7 +55,9 @@ body{
   border: 1px solid var(--line);
 }
 
-.brand-name{ font-weight: 700; }
+.brand-name{
+  font-weight: 700;
+}
 
 .nav{
   display: flex;
@@ -66,42 +77,48 @@ body{
 .nav a:hover{ text-decoration: underline; }
 .nav a.active{ color: #111827; }
 
-/* ========== Layout container ========== */
+/* ===== Page container ===== */
 .container{
-  max-width: var(--maxw);
+  max-width: var(--pageMax);
   margin: 0 auto;
-  padding: 28px 22px 60px;
+  padding: 22px 22px 60px;   /* ✅ 上边距略缩小，让内容整体更靠上 */
 }
 
+/* ✅ 标题与图片距离缩小：避免“整体偏下” */
 .page-title{
   text-align: center;
   font-size: 44px;
-  margin: 10px 0 18px;
+  margin: 8px 0 12px;        /* ✅ 更靠上 */
   letter-spacing: -0.02em;
 }
 
-/* ========== Hero banner: fixed height (关键) ========== */
+/* ===== Hero image (NO CROP) ===== */
 .hero{
   display: flex;
   justify-content: center;
-  margin: 12px 0 34px;
+  margin: 6px 0 22px;        /* ✅ 更靠上 */
 }
 
 .hero-img{
   width: 100%;
-  max-width: var(--heroMax);
+  max-width: var(--heroMaxW);
 
-  height: var(--heroH);     /* ✅ 固定高度 */
-  object-fit: cover;        /* ✅ 裁切填满，不变形 */
-  object-position: 50% 25%; /* ✅ 竖图时往上偏一点保留脸（可调 15%~40%） */
+  /* ✅ 不裁剪：保持比例缩放 */
+  height: auto;
 
+  /* ✅ 竖图不会撑爆页面：超过 max-height 会等比缩小 */
+  max-height: var(--heroMaxH);
+
+  object-fit: contain;       /* ✅ 关键：contain = 不裁剪 */
   border-radius: 10px;
   border: 1px solid var(--line);
+  background: #fff;
+  display: block;
 }
 
-/* ========== Text section ========== */
+/* ===== Text ===== */
 .section{
-  max-width: var(--maxw);
+  max-width: var(--pageMax);
   margin: 0 auto;
 }
 
@@ -117,13 +134,16 @@ body{
   color: #111827;
 }
 
-/* ========== Responsive ========== */
+.muted{ color: var(--muted); }
+
+/* ===== Responsive ===== */
 @media (max-width: 720px){
   .page-title{ font-size: 34px; }
   :root{
-    --heroMax: 100%;
-    --heroH: 210px;     /* ✅ 手机上高度略小一点更协调 */
+    --heroMaxW: 100%;
+    --heroMaxH: 280px;
+    --topbarMax: 100%;
   }
-  .topbar{ padding: 12px 14px; }
+  .topbar-inner{ padding: 12px 14px; }
   .nav{ gap: 12px; }
 }
