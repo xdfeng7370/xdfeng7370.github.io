@@ -1,28 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Source+Serif+4:wght@400;600;700&display=swap');
 
 :root{
-  /* ====== Fixed site width ====== */
   --siteBase: 1100px;
-  --siteExtra: 1cm;                /* total +1cm => 0.5cm each side */
+  --siteExtra: 1cm;
   --siteMax: calc(var(--siteBase) + var(--siteExtra));
 
-  /* ====== Colors ====== */
   --text: #111827;
   --muted: #6b7280;
   --line: #e5e7eb;
 
-  /* ====== Fonts (academic) ====== */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
                "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-serif: "Source Serif 4", Georgia, "Times New Roman", Times,
                 "Songti SC", "STSong", "SimSun", serif;
 
-  /* ====== Hero image ====== */
   --heroMaxW: 680px;
   --heroMaxH: 320px;
 
-  /* ====== Responsive thresholds ====== */
-  --menuBreakpoint: 760px;         /* <= this: show hamburger */
+  --collapseBp: 980px; /* ✅ 半屏基本就会折叠 */
 }
 
 *{ box-sizing: border-box; }
@@ -34,7 +29,6 @@ body{
   background: #fff;
 }
 
-/* ===================== Topbar (all pages) ===================== */
 .topbar{
   position: sticky;
   top: 0;
@@ -51,10 +45,9 @@ body{
 
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 32px;
-  flex-wrap: wrap;
-  position: relative; /* for dropdown menu */
+  justify-content: space-between; /* ✅ 模板常用：左 brand，右 nav/按钮 */
+  gap: 18px;
+  position: relative;            /* ✅ 给 dropdown 定位 */
 }
 
 .brand{
@@ -81,10 +74,8 @@ body{
 
 .nav{
   display: flex;
-  flex-wrap: wrap;
-  gap: 22px;
   align-items: center;
-  justify-content: flex-start;
+  gap: 22px;
 }
 
 .nav a{
@@ -96,29 +87,26 @@ body{
   padding: 6px 2px;
   white-space: nowrap;
 }
-
 .nav a:hover{ text-decoration: underline; }
 .nav a.active{ color: #111827; }
 
-/* ===================== Main container ===================== */
 .container{
   max-width: var(--siteMax);
   margin: 0 auto;
   padding: 22px 22px 60px;
 }
 
-/* Page title (About / Research / Publications / Talks) */
+/* ✅ About 等页面标题自适应缩放 */
 .page-title{
   font-family: var(--font-sans);
   font-weight: 600;
-  font-size: clamp(30px, 4vw, 44px);  /* ✅ auto scale */
+  font-size: clamp(30px, 4vw, 44px);
   letter-spacing: -0.01em;
   line-height: 1.15;
   text-align: center;
   margin: 26px 0 18px;
 }
 
-/* ===================== About helpers ===================== */
 .hero{
   display: flex;
   justify-content: center;
@@ -130,11 +118,9 @@ body{
   height: auto;
   max-width: min(var(--heroMaxW), 100%);
   max-height: var(--heroMaxH);
-  object-fit: contain; /* no crop */
+  object-fit: contain;
   display: block;
 }
-
-.section{ margin: 0; }
 
 .name-title{
   font-family: var(--font-sans);
@@ -149,38 +135,29 @@ body{
   margin: 10px 0;
 }
 
-.muted{ color: var(--muted); }
-
-/* =========================
-   Hamburger menu
-   ========================= */
+/* ===== Hamburger (default hidden on desktop) ===== */
 .nav-toggle{
-  display: none;              /* default hidden */
-  margin-left: auto;
-
+  display: none;
   width: 44px;
   height: 44px;
   border-radius: 12px;
   border: 1px solid rgba(17,24,39,0.10);
   background: #fff;
-
   font-size: 22px;
   line-height: 1;
   cursor: pointer;
 }
 
 .nav-menu{
-  display: none;
+  display: none; /* only show when open */
   position: absolute;
   right: 22px;
   top: calc(100% + 10px);
-
   width: min(360px, calc(100vw - 44px));
   background: #fff;
   border: 1px solid rgba(17,24,39,0.10);
   border-radius: 14px;
   box-shadow: 0 10px 24px rgba(17,24,39,0.15);
-
   padding: 10px;
   z-index: 50;
 }
@@ -189,24 +166,26 @@ body{
   display: block;
   padding: 14px 14px;
   border-radius: 10px;
-
   font-family: var(--font-sans);
   font-weight: 600;
   color: #111827;
   text-decoration: none;
 }
-
-.nav-menu a:hover{
-  background: rgba(17,24,39,0.05);
-}
-
-.nav-menu a.active{
-  color: #111827;
-}
+.nav-menu a:hover{ background: rgba(17,24,39,0.05); }
 
 .nav-menu.open{ display: block; }
 
-/* ===================== Responsive ===================== */
+/* ✅ 小屏折叠：只留名字 + hamburger */
+@media (max-width: 980px){
+  .nav-desktop{ display: none; }
+  .nav-toggle{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* 更小屏的尺寸微调 */
 @media (max-width: 820px){
   :root{
     --siteExtra: 0px;
@@ -214,29 +193,7 @@ body{
     --heroMaxW: 100%;
     --heroMaxH: 280px;
   }
-
-  .topbar-inner{
-    max-width: 100%;
-    padding: 12px 14px;
-    gap: 14px;
-  }
-
+  .topbar-inner{ padding: 12px 14px; }
   .avatar{ width: 36px; height: 36px; }
   .brand-name{ font-size: 17px; }
-
-  .nav{ gap: 12px; }
-  .nav a{ font-size: 15.5px; }
-
-  .container{ max-width: 100%; }
-  .page-title{ margin: 18px 0 14px; }
-}
-
-/* ✅ Small screen: collapse to hamburger */
-@media (max-width: 760px){
-  .nav{ display: none; }
-  .nav-toggle{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
 }
