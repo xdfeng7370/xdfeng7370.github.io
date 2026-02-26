@@ -15,8 +15,8 @@
         <span class="brand-name">Xiaodong Feng (冯晓东)</span>
       </div>
 
-      <!-- 大屏导航 -->
-      <nav class="nav" id="topNav">
+      <!-- ✅ 大屏导航（小屏会被 CSS 隐藏） -->
+      <nav class="nav nav-desktop" id="topNav">
         <a class="active" href="index.html">About</a>
         <a href="research.html">Research</a>
         <a href="publications.html">Publications</a>
@@ -24,12 +24,12 @@
         <a href="assets/CV.pdf" target="_blank" rel="noopener">CV</a>
       </nav>
 
-      <!-- 小屏 hamburger -->
+      <!-- ✅ 小屏 hamburger（大屏会被 CSS 隐藏） -->
       <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
         &#9776;
       </button>
 
-      <!-- 小屏下拉菜单 -->
+      <!-- ✅ 小屏下拉菜单（默认隐藏） -->
       <div class="nav-menu" id="navMenu" aria-hidden="true">
         <a class="active" href="index.html">About</a>
         <a href="research.html">Research</a>
@@ -79,18 +79,21 @@
         menu.setAttribute('aria-hidden', String(!isOpen));
       });
 
+      // 点击菜单外关闭
       document.addEventListener('click', (e) => {
         if (!menu.classList.contains('open')) return;
         if (menu.contains(e.target) || btn.contains(e.target)) return;
         closeMenu();
       });
 
+      // ESC 关闭
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeMenu();
       });
 
+      // 变回大屏时自动关闭
       window.addEventListener('resize', () => {
-        if (window.matchMedia('(min-width: 761px)').matches) closeMenu();
+        if (window.matchMedia('(min-width: 981px)').matches) closeMenu();
       });
     })();
   </script>
