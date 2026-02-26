@@ -47,7 +47,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: flex-start;   /* ✅ tabs 靠近姓名，不留大空白 */
-  gap: 26px;                     /* ✅ 姓名与 tabs 的距离（想更近改 18px） */
+  gap: 60px;                     /* ✅ 姓名与 tabs 的距离（想更近改 18px） */
   position: relative;            /* dropdown 定位 */
 }
 
