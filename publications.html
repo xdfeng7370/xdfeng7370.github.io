@@ -7,11 +7,6 @@
   <link rel="stylesheet" href="assets/style.css" />
 
   <style>
-    /* 让本页主体宽度与顶部 topbar-inner 一致（左右对齐） */
-    main.container{
-      max-width: var(--topbarMax, 1180px);
-    }
-
     .pub-section{
       color:#b91c1c;
       font-weight:800;
@@ -19,7 +14,6 @@
       font-family: var(--font-sans, inherit);
     }
 
-    /* list style like "7, ..." */
     ol.pub-list{
       margin: 0;
       padding-left: 2.3em;
@@ -27,27 +21,23 @@
       list-style: decimal;
     }
     ol.pub-list li{ margin: 10px 0; }
-
     ol.pub-list li::marker{
       content: counter(list-item) ", ";
       font-weight: 800;
       font-family: var(--font-sans, inherit);
     }
 
-    /* 标题直接做链接：不显示 URL 前缀，效果类似你第二张图 */
+    /* 标题就是链接：不显示 https://... */
     a.pub-title{
       font-weight: 800;
       text-decoration: underline;
       color: inherit;
     }
     a.pub-title:hover{ opacity: .9; }
-
-    .pub-note{ font-weight: 800; }
   </style>
 </head>
 
 <body>
-  <!-- Top bar: match index.html -->
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
@@ -76,116 +66,75 @@
   </main>
 
   <script>
-    /**
-     * 规则：
-     * - title 直接作为链接显示（不显示 URL 前缀），最贴近你第二张图
-     * - 每条必须有 url
-     * - 自动排序：year 降序，同年 title 升序
-     * - 自动连续编号：Submitted 从总数开始倒序，Published 接着倒序
-     */
     const pubs = [
-      // ================= Submitted =================
-      {
-        status: "submitted",
-        year: 2025,
-        authors: "Xiaodong Feng, Tao Tang, Xiaoliang Wan, and Tao Zhou",
-        title: "Overcoming Spectral Bias via Cross-Attention",
-        venue: "arXiv preprint arXiv:2512.18586",
-        url: "https://arxiv.org/abs/2512.18586"
-      },
-      {
-        status: "submitted",
-        year: 2025,
-        authors: "Xiaodong Feng, Ling Guo, Xiaoliang Wan, Hao Wu, Tao Zhou, and Wenwen Zhou",
-        title: "LVM-GP: Uncertainty-Aware PDE Solver via coupling latent variable model and Gaussian process",
-        venue: "arXiv preprint arXiv:2507.22493",
-        url: "https://arxiv.org/abs/2507.22493"
-      },
-      {
-        status: "submitted",
-        year: 2024,
-        authors: "Xiaodong Feng, Haojiong Shangguan, Tao Tang, Xiaoliang Wan, and Tao Zhou",
-        title: "A hybrid FEM-PINN method for time-dependent partial differential equations",
-        venue: "arXiv preprint arXiv:2409.02810",
-        url: "https://arxiv.org/abs/2409.02810"
-      },
+      // Submitted
+      { status:"submitted", year:2025,
+        authors:"Xiaodong Feng, Tao Tang, Xiaoliang Wan, and Tao Zhou",
+        title:"Overcoming Spectral Bias via Cross-Attention",
+        venue:"arXiv preprint arXiv:2512.18586",
+        url:"https://arxiv.org/abs/2512.18586" },
 
-      // ================= Published =================
-      {
-        status: "published",
-        year: 2026,
-        authors: "Xiaodong Feng, Haojiong Shangguan, Tao Tang, and Xiaoliang Wan",
-        title: "Integral Regularization PINNs for Evolution Equations",
-        venue: "Communications in Computational Physics, 39(2):356–386, 2026",
-        url: "https://global-sci.com/index.php/cicp/article/view/23347"
-      },
-      {
-        status: "published",
-        year: 2023,
-        authors: "Xiaodong Feng, Yue Qian, and Wanfang Shen",
-        title: "MC-Nonlocal-PINNs: Handling Nonlocal Operators in PINNs via Monte Carlo Sampling",
-        venue: "Numerical Mathematics: Theory, Methods and Applications, 16(3):769–791, 2023",
-        url: "https://global-sci.com/index.php/nmtma/article/view/14453"
-      },
-      {
-        status: "published",
-        year: 2022,
-        authors: "Xiaodong Feng and Li Zeng",
-        title: "Gradient-enhanced deep neural network approximations",
-        venue: "Journal of Machine Learning for Modeling and Computing, 3(4), 2022",
-        url: "https://www.dl.begellhouse.com/journals/558048804a15188a,22e553d25a1b5ff0,6658196f7b72ef2f.html"
-      },
-      {
-        status: "published",
-        year: 2022,
-        authors: "Xiaodong Feng, Li Zeng, and Tao Zhou",
-        title: "Solving Time Dependent Fokker-Planck Equations via Temporal Normalizing Flow",
-        venue: "Communications in Computational Physics, 32(2):401–423, 2022",
-        url: "https://global-sci.com/cicp/article/view/7087"
-      }
+      { status:"submitted", year:2025,
+        authors:"Xiaodong Feng, Ling Guo, Xiaoliang Wan, Hao Wu, Tao Zhou, and Wenwen Zhou",
+        title:"LVM-GP: Uncertainty-Aware PDE Solver via coupling latent variable model and Gaussian process",
+        venue:"arXiv preprint arXiv:2507.22493",
+        url:"https://arxiv.org/abs/2507.22493" },
+
+      { status:"submitted", year:2024,
+        authors:"Xiaodong Feng, Haojiong Shangguan, Tao Tang, Xiaoliang Wan, and Tao Zhou",
+        title:"A hybrid FEM-PINN method for time-dependent partial differential equations",
+        venue:"arXiv preprint arXiv:2409.02810",
+        url:"https://arxiv.org/abs/2409.02810" },
+
+      // Published
+      { status:"published", year:2026,
+        authors:"Xiaodong Feng, Haojiong Shangguan, Tao Tang, and Xiaoliang Wan",
+        title:"Integral Regularization PINNs for Evolution Equations",
+        venue:"Communications in Computational Physics, 39(2):356–386, 2026",
+        url:"https://global-sci.com/index.php/cicp/article/view/23347" },
+
+      { status:"published", year:2023,
+        authors:"Xiaodong Feng, Yue Qian, and Wanfang Shen",
+        title:"MC-Nonlocal-PINNs: Handling Nonlocal Operators in PINNs via Monte Carlo Sampling",
+        venue:"Numerical Mathematics: Theory, Methods and Applications, 16(3):769–791, 2023",
+        url:"https://global-sci.com/index.php/nmtma/article/view/14453" },
+
+      { status:"published", year:2022,
+        authors:"Xiaodong Feng and Li Zeng",
+        title:"Gradient-enhanced deep neural network approximations",
+        venue:"Journal of Machine Learning for Modeling and Computing, 3(4), 2022",
+        url:"https://www.dl.begellhouse.com/journals/558048804a15188a,22e553d25a1b5ff0,6658196f7b72ef2f.html" },
+
+      { status:"published", year:2022,
+        authors:"Xiaodong Feng, Li Zeng, and Tao Zhou",
+        title:"Solving Time Dependent Fokker-Planck Equations via Temporal Normalizing Flow",
+        venue:"Communications in Computational Physics, 32(2):401–423, 2022",
+        url:"https://global-sci.com/cicp/article/view/7087" }
     ];
 
-    function esc(s){
-      return (s || "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#39;");
-    }
+    const esc = s => (s||"")
+      .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;").replaceAll("'","&#39;");
 
-    function sortFn(a,b){
-      if ((b.year||0) !== (a.year||0)) return (b.year||0) - (a.year||0);
-      return (a.title||"").localeCompare(b.title||"");
-    }
+    const sortFn = (a,b)=> ((b.year||0)-(a.year||0)) || (a.title||"").localeCompare(b.title||"");
 
-    function renderItem(p){
-      const authors = esc(p.authors);
-      const venue = esc(p.venue);
-      const year = p.year ? esc(String(p.year)) : "";
-
-      // 标题直接链接（像你第二张图的“标题可点”）
+    const renderItem = p => {
       const title = `<a class="pub-title" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>`;
+      return `${esc(p.authors)}, ${title}, ${esc(p.venue)}, ${esc(String(p.year))}.`;
+    };
 
-      // Authors, Title, venue, year.
-      return `${authors}, ${title}, ${venue}, ${year}.`;
-    }
+    const submitted = pubs.filter(p=>p.status==="submitted").sort(sortFn);
+    const published = pubs.filter(p=>p.status==="published").sort(sortFn);
 
-    const submitted = pubs.filter(p => p.status === "submitted").sort(sortFn);
-    const published = pubs.filter(p => p.status === "published").sort(sortFn);
-
+    // 连续编号：Submitted 从总数倒序，Published 接着倒序
     const total = submitted.length + published.length;
-    const submittedStart = total;
-    const publishedStart = total - submitted.length;
-
     const subOl = document.getElementById("submittedList");
     const pubOl = document.getElementById("publishedList");
+    subOl.setAttribute("start", total);
+    pubOl.setAttribute("start", total - submitted.length);
 
-    subOl.setAttribute("start", submittedStart);
-    pubOl.setAttribute("start", publishedStart);
-
-    subOl.innerHTML = submitted.map(p => `<li>${renderItem(p)}</li>`).join("");
-    pubOl.innerHTML = published.map(p => `<li>${renderItem(p)}</li>`).join("");
+    subOl.innerHTML = submitted.map(p=>`<li>${renderItem(p)}</li>`).join("");
+    pubOl.innerHTML = published.map(p=>`<li>${renderItem(p)}</li>`).join("");
   </script>
 </body>
 </html>
