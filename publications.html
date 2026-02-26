@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Publications | Your Name</title>
   <link rel="stylesheet" href="assets/style.css" />
+
+  <!-- BibTeX 解析库（浏览器端解析 .bib 文件） -->
+  <script src="https://cdn.jsdelivr.net/npm/bibtex-parse-js@0.0.24/bibtexParse.min.js"></script>
 </head>
 <body>
   <header class="topbar">
@@ -25,19 +28,92 @@
   <main class="container">
     <h1 class="page-title">Publications</h1>
 
-    <!-- 简单有序列表：自动编号 -->
-    <!-- 想“最新在上面、编号从大到小”，就保留 reversed -->
-    <ol class="simple-list" reversed>
-      <li>
-        <a href="#">How Particle System Theory Enhances Hypergraph Message Passing</a>,
-        <span class="muted">NeurIPS, 2025</span>
-      </li>
-      <li>
-        <a href="#">Quantum algorithms for uncertainty quantification: application to partial differential equations</a>,
-        <span class="muted">Science China: Physics, Mechanics & Astronomy, 2025</span>
-      </li>
-      <!-- 继续加条目 -->
-    </ol>
+    <!-- 渲染区域 -->
+    <div id="pubs"></div>
   </main>
+
+  <script>
+    const bibPath = "assets/publications.bib"; // 你上传的 bib 文件路径
+
+    function clean(s) {
+      return (s || "").replace(/\s+/g, " ").trim();
+    }
+
+    function authorsToText(authorField) {
+      // BibTeX: "A and B and C" -> "A, B, C"
+      return clean(authorField).split(/\s+and\s+/i).map(clean).filter(Boolean).join(", ");
+    }
+
+    function bestLink(tags) {
+      // 优先：url > doi
+      if (tags.url) return tags.url;
+      if (tags.doi) return "https://doi.org/" + clean(tags.doi);
+      return "";
+    }
+
+    function venueText(tags) {
+      // journal / booktitle / publisher
+      return clean(tags.journal || tags.booktitle || tags.publisher || "");
+    }
+
+    function renderGroupedByYear(entries) {
+      // entries: [{entryTags:{title,year,author,...}}]
+      const items = entries.map(e => e.entryTags || {}).map(t => ({
+        title: clean(t.title || ""),
+        year: parseInt(t.year, 10),
+        author: authorsToText(t.author || ""),
+        venue: venueText(t),
+        link: bestLink(t),
+      })).filter(x => x.title);
+
+      // year 为空的放到 Unknown
+      for (const it of items) {
+        if (!Number.isFinite(it.year)) it.year = 0;
+      }
+
+      // 按 year 降序，再按 title
+      items.sort((a,b) => (b.year - a.year) || a.title.localeCompare(b.title));
+
+      // 分组
+      const groups = new Map();
+      for (const it of items) {
+        const y = it.year === 0 ? "Unknown year" : String(it.year);
+        if (!groups.has(y)) groups.set(y, []);
+        groups.get(y).push(it);
+      }
+
+      // 生成 HTML：每年一个 heading + 简单有序列表（自动编号）
+      let html = "";
+      for (const [year, list] of groups.entries()) {
+        html += `<h2 class="year-title">${year}</h2>`;
+        html += `<ol class="simple-list">`;
+        for (const p of list) {
+          const titleHtml = p.link
+            ? `<a href="${p.link}" target="_blank" rel="noopener">${p.title}</a>`
+            : `<span class="plain-title">${p.title}</span>`;
+
+          const meta = [p.author, p.venue].filter(Boolean).join(" — ");
+          html += `<li>${titleHtml}${meta ? `, <span class="muted">${meta}</span>` : ""}</li>`;
+        }
+        html += `</ol>`;
+      }
+      return html;
+    }
+
+    fetch(bibPath)
+      .then(r => {
+        if (!r.ok) throw new Error("Failed to load " + bibPath);
+        return r.text();
+      })
+      .then(text => {
+        const parsed = bibtexParse.toJSON(text); // 解析 BibTeX
+        document.getElementById("pubs").innerHTML = renderGroupedByYear(parsed);
+      })
+      .catch(err => {
+        document.getElementById("pubs").innerHTML =
+          `<p class="muted">Cannot load publications. Please make sure <code>${bibPath}</code> exists.</p>`;
+        console.error(err);
+      });
+  </script>
 </body>
 </html>
