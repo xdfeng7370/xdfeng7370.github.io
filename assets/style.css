@@ -63,7 +63,7 @@ body{
 .topbar-inner{
   max-width: var(--siteMax);  /* 顶栏内容的左右边界跟正文对齐 */
   margin: 0 auto;             /* 水平居中放在页面中 */
-  padding: 20px 50px;         /* 顶栏上下高度、左右内边距 */
+  padding: 24px 50px;         /* 顶栏上下高度、左右内边距 */
 
   display: flex;              /* 让 brand + nav 在一行排列 */
   align-items: center;        /* 垂直居中对齐 */
@@ -84,8 +84,8 @@ body{
 /* 顶栏头像（左上角圆形图）
    你图里：圆形头像大小和边框 */
 .avatar{
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 999px; /* 圆形 */
   object-fit: cover;    /* 头像按比例填充，不变形 */
   border: 1px solid var(--line);
@@ -146,7 +146,7 @@ body{
 .hero{
   display: flex;
   justify-content: center;       /* 照片居中 */
-  margin: 10px 0 22px;            /* 照片上下留白 */
+  margin: 20px 0 30px;            /* 照片上下留白 */
 }
 
 /* 照片本体：不裁剪、等比例缩放
