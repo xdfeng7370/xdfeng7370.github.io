@@ -45,30 +45,56 @@
       <div class="method-grid">
         <!-- Left: text + flow diagram -->
         <div>
-          <h2>Latent diffusion models for high-dimensional and nonlinear Bayesian data assimilation with sparse observations</h2>
+          <h2>Deep neural network for evolution equations</h2>
 
           <div class="paper-block">
-            <div class="paper-authors">P. Si and P. Chen.</div>
-            <a class="paper-link" href="https://arxiv.org/abs/2409.00127" target="_blank" rel="noopener">
-              Latent-EnSF: A Latent Ensemble Score Filter for High-Dimensional Data Assimilation with Sparse Observation Data.
-            </a>
-            <div class="paper-meta">arXiv:2409.00127, 2024.</div>
+            <div class="paper-authors">Xiaodong Feng, Haojiong Shangguan, Tao Tang, Xiaoliang Wan, Tao Zhou</div>
+            <a class="paper-link" href="https://arxiv.org/abs/2409.02810" target="_blank" rel="noopener">
+                  A hybrid FEM-PINN method for time-dependent partial differential equations            </a>
+            <div class="paper-meta">arXiv:2409.02810, 2024.</div>
           </div>
 
           <div class="paper-block">
-            <div class="paper-authors">P. Xiao, P. Si, and P. Chen.</div>
-            <a class="paper-link" href="#" target="_blank" rel="noopener">
-              LD-EnSF: Synergizing Latent Dynamics with Ensemble Score Filters for Sparse Data Assimilation.
+            <div class="paper-authors">Xiaodong Feng, Haojiong Shangguan, Tao Tang, Xiaoliang Wan</div>
+            <a class="paper-link" href="https://global-sci.com/index.php/cicp/article/view/23347" target="_blank" rel="noopener">
+              Integral regularization PINNs for evolution equations
             </a>
-            <div class="paper-meta">Preprint, 2024.</div>
+            <div class="paper-meta">Communications in Computational Physics, 2026, 39(2): 356-386..</div>
           </div>
+<p>
+  Evolution equations differ fundamentally from elliptic problems in that their solutions possess a
+  <em>propagation</em> (or <em>causality</em>) property: the state at a later time is determined by, and depends on,
+  the state at earlier times. In addition, the solution may develop strong temporal heterogeneity, e.g.,
+  concentrating on different spatial regions as time evolves. These features can make learning-based solvers
+  and physics-informed training unstable, since errors may accumulate along the time direction and the relevant
+  solution features may shift over time.
+</p>
 
-          <p>
-            We develop novel Bayesian data assimilation methods, Latent-EnSF and LD-EnSF, which leverage diffusion-model-based
-            ensemble score filters with efficient and consistent latent representations of the full states and sparse observations
-            to address high dimensionality and observation sparsity in nonlinear Bayesian filtering, achieving fast convergence,
-            high accuracy, and efficiency.
-          </p>
+<p>
+  To mitigate these difficulties, we propose three complementary approaches:
+</p>
+
+<ul>
+  <li>
+    <strong>Time-simple hypothesis space with exact temporal integration:</strong>
+    we adopt a simple hypothesis space in the time variable and evaluate integrals along the time direction
+    using accurate Gaussian quadrature, so that the temporal contributions are treated in a controlled and
+    numerically reliable manner.
+  </li>
+  <li>
+    <strong>Integral regularization in the training objective:</strong>
+    we modify the loss function by adding an integral regularization term that enforces consistency over time
+    and improves stability, thereby reducing error accumulation and enhancing generalization across the full
+    time horizon.
+  </li>
+  <li>
+    <strong>Causal–integral neural architecture:</strong>
+    we design a causal–integral network structure that explicitly respects temporal causality and incorporates
+    integral information, enabling the model to better capture the propagation dynamics inherent to evolution
+    equations.
+  </li>
+</ul>
+          
 
           <!-- Left-bottom flow diagram -->
           <img class="method-flow" src="" alt="" />
