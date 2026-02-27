@@ -63,7 +63,7 @@ body{
 .topbar-inner{
   max-width: var(--siteMax);  /* 顶栏内容的左右边界跟正文对齐 */
   margin: 0 auto;             /* 水平居中放在页面中 */
-  padding: 20px 24px;         /* 顶栏上下高度、左右内边距 */
+  padding: 20px 50px;         /* 顶栏上下高度、左右内边距 */
 
   display: flex;              /* 让 brand + nav 在一行排列 */
   align-items: center;        /* 垂直居中对齐 */
@@ -134,19 +134,19 @@ body{
    - clamp：屏幕变窄时标题会自动变小 */
 .page-title{
   font-family: var(--font-sans);
-  font-weight: 800;
+  font-weight: 600;
   font-size: clamp(20px, 4vw, 36px); /* ★ 小屏30px ~ 大屏44px，中间按视口宽度变化 */
   letter-spacing: -0.01em;
   line-height: 1.15;
   text-align: center;
-  margin: 26px 0 24px;           /* 标题上下留白 */
+  margin: 16px 0 24px;           /* 标题上下留白 */
 }
 
 /* ===================== About 页照片区域（你图里标题下面那张大照片） ===================== */
 .hero{
   display: flex;
   justify-content: center;       /* 照片居中 */
-  margin: 6px 0 22px;            /* 照片上下留白 */
+  margin: 10px 0 22px;            /* 照片上下留白 */
 }
 
 /* 照片本体：不裁剪、等比例缩放
