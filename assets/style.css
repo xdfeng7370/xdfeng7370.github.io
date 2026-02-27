@@ -7,7 +7,7 @@
   /* ====== 版心宽度（决定页面内容左右边界，影响“整页的留白”） ======
      --siteMax 是最终版心宽度：大屏时页面内容不会无限铺开
      你图里：顶栏内容、About 标题、照片、正文段落的左右对齐都受它影响 */
-  --siteBase: 1200px;
+  --siteBase: 1400px;
   --siteMax: calc(var(--siteBase));
 
   /* ====== 全局颜色 ======
@@ -63,12 +63,12 @@ body{
 .topbar-inner{
   max-width: var(--siteMax);  /* 顶栏内容的左右边界跟正文对齐 */
   margin: 0 auto;             /* 水平居中放在页面中 */
-  padding: 18px 22px;         /* 顶栏上下高度、左右内边距 */
+  padding: 20px 24px;         /* 顶栏上下高度、左右内边距 */
 
   display: flex;              /* 让 brand + nav 在一行排列 */
   align-items: center;        /* 垂直居中对齐 */
   justify-content: flex-start;/* 从左往右排（让 About 靠近姓名） */
-  gap: 100px;                  /* ★ 姓名组(brand)与导航(nav)之间的距离（你想更近就减小） */
+  gap: 160px;                  /* ★ 姓名组(brand)与导航(nav)之间的距离（你想更近就减小） */
   position: relative;         /* 给下拉菜单 nav-menu 做绝对定位参照 */
 }
 
@@ -113,7 +113,7 @@ body{
 .nav a{
   font-family: var(--font-sans);
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 450;
   color: #374151;
   text-decoration: none; /* 默认不下划线 */
   padding: 6px 2px;      /* 增加点击热区 */
@@ -126,7 +126,7 @@ body{
 .container{
   max-width: var(--siteMax);     /* 正文内容与顶栏对齐同一版心 */
   margin: 0 auto;
-  padding: 22px 22px 60px;       /* 上左右下的内边距（下方留空更舒服） */
+  padding: 22px 22px 40px;       /* 上左右下的内边距（下方留空更舒服） */
 }
 
 /* About 页面大标题（你图里中间那个 “About”）
@@ -134,12 +134,12 @@ body{
    - clamp：屏幕变窄时标题会自动变小 */
 .page-title{
   font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: clamp(20px, 4vw, 40px); /* ★ 小屏30px ~ 大屏44px，中间按视口宽度变化 */
+  font-weight: 800;
+  font-size: clamp(20px, 4vw, 36px); /* ★ 小屏30px ~ 大屏44px，中间按视口宽度变化 */
   letter-spacing: -0.01em;
   line-height: 1.15;
   text-align: center;
-  margin: 26px 0 18px;           /* 标题上下留白 */
+  margin: 26px 0 24px;           /* 标题上下留白 */
 }
 
 /* ===================== About 页照片区域（你图里标题下面那张大照片） ===================== */
