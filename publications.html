@@ -140,8 +140,8 @@
       return `${esc(p.authors)}, ${title}, ${esc(p.venue)}, ${esc(String(p.year))}.`;
     };
 
-    const submitted = pubs.filter(p=>p.status==="submitted").sort(sortFn);
-    const published = pubs.filter(p=>p.status==="published").sort(sortFn);
+    const submitted = pubs.filter(p=>p.status==="submitted");
+    const published = pubs.filter(p=>p.status==="published");
 
     const total = submitted.length + published.length;
     const subOl = document.getElementById("submittedList");
