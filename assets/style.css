@@ -7,7 +7,7 @@
   /* ====== 版心宽度（决定页面内容左右边界，影响“整页的留白”） ======
      --siteMax 是最终版心宽度：大屏时页面内容不会无限铺开
      你图里：顶栏内容、About 标题、照片、正文段落的左右对齐都受它影响 */
-  --siteBase: 1400px;
+  --siteBase: 1300px;
   --siteMax: calc(var(--siteBase));
 
   /* ====== 全局颜色 ======
@@ -68,7 +68,7 @@ body{
   display: flex;              /* 让 brand + nav 在一行排列 */
   align-items: center;        /* 垂直居中对齐 */
   justify-content: flex-start;/* 从左往右排（让 About 靠近姓名） */
-  gap: 160px;                  /* ★ 姓名组(brand)与导航(nav)之间的距离（你想更近就减小） */
+  gap: 240px;                  /* ★ 姓名组(brand)与导航(nav)之间的距离（你想更近就减小） */
   position: relative;         /* 给下拉菜单 nav-menu 做绝对定位参照 */
 }
 
@@ -95,7 +95,7 @@ body{
    你图里：Xiaodong Feng (冯晓东) 的大小、粗细、字体 */
 .brand-name{
   font-family: var(--font-sans);
-  font-weight: 800;     /* 很粗的黑体 */
+  font-weight: 600;     /* 很粗的黑体 */
   font-size: 24px;
   white-space: nowrap;  /* 不换行，避免顶栏高度变大 */
 }
@@ -164,7 +164,7 @@ body{
    比正文更大、更粗，增强层次 */
 .name-title{
   font-family: var(--font-sans);
-  font-weight: 800;
+  font-weight: 600;
   font-size: 24px;
   margin: 0 0 10px;
 }
