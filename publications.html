@@ -14,11 +14,14 @@
       font-family: var(--font-sans, inherit);
     }
 
+    /* ✅ publications 列表字体/行距：与 index 的 section p 一致 */
     ol.pub-list{
       margin: 0;
       padding-left: 2.3em;
-      line-height: 1.75;
       list-style: decimal;
+
+      font-size: 18px;
+      line-height: 1.85;
     }
     ol.pub-list li{ margin: 10px 0; }
     ol.pub-list li::marker{
@@ -150,7 +153,6 @@
     pubOl.innerHTML = published.map(p=>`<li>${renderItem(p)}</li>`).join("");
   </script>
 
-  <!-- ✅ 复用 index 的折叠菜单 JS -->
   <script>
     (function(){
       const btn = document.getElementById('navToggle');
