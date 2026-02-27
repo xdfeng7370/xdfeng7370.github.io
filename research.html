@@ -5,6 +5,101 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Research | Xiaodong Feng</title>
   <link rel="stylesheet" href="assets/style.css" />
+
+  <style>
+    /* ============ Research layout (local to this page) ============ */
+    .research-title{
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: clamp(20px, 4vw, 36px);
+      text-align: center;
+      margin: 16px 0 26px;
+    }
+
+    .method{
+      margin: 24px 0 34px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+    .method:first-of-type{ border-top: 0; padding-top: 0; }
+
+    .method-grid{
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;  /* 左文右图 */
+      gap: 26px;
+      align-items: start;
+    }
+
+    .method h2{
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 22px;
+      margin: 0 0 10px;
+      line-height: 1.25;
+    }
+
+    .paper-block{
+      margin: 10px 0 14px;
+      font-size: 16.5px;
+      line-height: 1.7;
+    }
+    .paper-authors{
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .paper-link{
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: underline;
+    }
+    .paper-meta{
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    .method p{
+      font-size: 18px;
+      line-height: 1.85;
+      margin: 10px 0;
+    }
+
+    .fig-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 两张并排 */
+      gap: 12px;
+    }
+
+    .fig{
+      width: 100%;
+      aspect-ratio: 1 / 1;    /* 让两张图像正方形区域，像你截图 */
+      object-fit: cover;      /* 默认裁剪铺满（你想不裁剪可改 contain） */
+      border-radius: 10px;
+      border: 1px solid rgba(17,24,39,0.10);
+      background: #fff;
+    }
+
+    .caption{
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    /* 小屏自动上下堆叠 */
+    @media (max-width: 980px){
+      .method-grid{ grid-template-columns: 1fr; }
+      .fig-grid{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px){
+      .fig-grid{ grid-template-columns: 1fr; }
+      .fig{ aspect-ratio: 16 / 10; }
+    }
+  </style>
 </head>
 
 <body>
@@ -15,19 +110,146 @@
         <span class="brand-name">Xiaodong Feng (冯晓东)</span>
       </div>
 
-      <nav class="nav">
+      <nav class="nav nav-desktop" id="topNav">
         <a href="index.html">About</a>
         <a class="active" href="research.html">Research</a>
         <a href="publications.html">Publications</a>
         <a href="talks.html">Talks</a>
         <a href="assets/CV.pdf" target="_blank" rel="noopener">CV</a>
       </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        &#9776;
+      </button>
+
+      <div class="nav-menu" id="navMenu" aria-hidden="true">
+        <a href="index.html">About</a>
+        <a class="active" href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="talks.html">Talks</a>
+        <a href="assets/CV.pdf" target="_blank" rel="noopener">CV</a>
+      </div>
     </div>
   </header>
 
   <main class="container">
-    <h1 class="page-title">Research</h1>
-    <p>Coming soon.</p>
+    <h1 class="research-title">Selected methods</h1>
+
+    <!-- ============ Method 1 ============ -->
+    <section class="method">
+      <div class="method-grid">
+        <div>
+          <h2>Latent diffusion models for high-dimensional and nonlinear Bayesian data assimilation with sparse observations</h2>
+
+          <div class="paper-block">
+            <div class="paper-authors">P. Si and P. Chen</div>
+            <div>
+              <a class="paper-link" href="#" target="_blank" rel="noopener">
+                Latent-EnSF: A Latent Ensemble Score Filter for High-Dimensional Data Assimilation with Sparse Observation Data
+              </a>
+            </div>
+            <div class="paper-meta">arXiv:2409.00127, 2024.</div>
+          </div>
+
+          <div class="paper-block">
+            <div class="paper-authors">P. Xiao, P. Si, and P. Chen</div>
+            <div>
+              <a class="paper-link" href="#" target="_blank" rel="noopener">
+                LD-EnSF: Synergizing Latent Dynamics with Ensemble Score Filters for Sparse Data Assimilation
+              </a>
+            </div>
+            <div class="paper-meta">Preprint, 2024.</div>
+          </div>
+
+          <p>
+            We develop novel Bayesian data assimilation methods that leverage diffusion-model-based ensemble score filters
+            with efficient and consistent latent representations of full states and sparse observations, enabling fast convergence
+            and improved accuracy in high-dimensional nonlinear filtering.
+          </p>
+
+          <div class="caption">
+            Flow diagram and qualitative results on representative PDE systems (replace figures with yours).
+          </div>
+        </div>
+
+        <div>
+          <div class="fig-grid">
+            <img class="fig" src="assets/method1_fig1.png" alt="method figure 1" />
+            <img class="fig" src="assets/method1_fig2.png" alt="method figure 2" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Method 2 (copy-paste and edit) ============ -->
+    <section class="method">
+      <div class="method-grid">
+        <div>
+          <h2>Your method title here</h2>
+
+          <div class="paper-block">
+            <div class="paper-authors">X. Feng, ...</div>
+            <div>
+              <a class="paper-link" href="#" target="_blank" rel="noopener">
+                Paper title (clickable)
+              </a>
+            </div>
+            <div class="paper-meta">Journal / arXiv / Year.</div>
+          </div>
+
+          <p>
+            One-paragraph description: what problem, what core idea, what benefit.
+            Keep it short and concrete.
+          </p>
+
+          <div class="caption">
+            One-line figure caption (optional).
+          </div>
+        </div>
+
+        <div>
+          <div class="fig-grid">
+            <img class="fig" src="assets/method2_fig1.png" alt="method figure 1" />
+            <img class="fig" src="assets/method2_fig2.png" alt="method figure 2" />
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <script>
+    (function(){
+      const btn = document.getElementById('navToggle');
+      const menu = document.getElementById('navMenu');
+      if(!btn || !menu) return;
+
+      function closeMenu(){
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+        menu.setAttribute('aria-hidden','true');
+      }
+
+      btn.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+        menu.setAttribute('aria-hidden', String(!isOpen));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!menu.classList.contains('open')) return;
+        if (menu.contains(e.target) || btn.contains(e.target)) return;
+        closeMenu();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.matchMedia('(min-width: 981px)').matches) closeMenu();
+      });
+    })();
+  </script>
 </body>
 </html>
