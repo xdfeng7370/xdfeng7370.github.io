@@ -291,3 +291,70 @@ body{
   .news-title{ font-size: 22px; }  /* 标题保持 22px（和 name-title 同款） */
   .news-list li{ font-size: 17px; }
 }
+
+/* ===================== Figure layout utilities ===================== */
+
+/* 图块容器：默认全宽，里面用 grid 排图 */
+.fig-row{
+  display: grid;
+  gap: 16px;
+  margin: 16px 0 10px;
+  align-items: start;
+}
+
+/* 一行放几张图：1/2/3/4 */
+.fig-1{ grid-template-columns: 1fr; }
+.fig-2{ grid-template-columns: 1fr 1fr; }
+.fig-3{ grid-template-columns: repeat(3, 1fr); }
+.fig-4{ grid-template-columns: repeat(4, 1fr); }
+
+/* 小屏自动降列（避免挤成一团） */
+@media (max-width: 980px){
+  .fig-4{ grid-template-columns: repeat(2, 1fr); }
+  .fig-3{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px){
+  .fig-4, .fig-3, .fig-2{ grid-template-columns: 1fr; }
+}
+
+/* 图片本体：结构图默认不裁剪，等比缩放 */
+.fig-row img{
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;  /* 结构图更适合 contain */
+  border: 1px solid rgba(17,24,39,0.10);
+  border-radius: 12px;
+  background: #fff;
+}
+
+/* ===== 对齐方式（控制“整行图块”在页面中的位置） =====
+   说明：对齐的是 fig-row 这个整块，而不是单张图 */
+.fig-left{ justify-self: start; }
+.fig-center{ justify-self: center; }
+.fig-right{ justify-self: end; }
+
+/* 控制图块占用宽度（配合对齐使用） */
+.fig-w-100{ width: 100%; }
+.fig-w-80{ width: 80%; }
+.fig-w-70{ width: 70%; }
+.fig-w-60{ width: 60%; }
+.fig-w-50{ width: 50%; }
+
+/* 可点击放大（可选） */
+.fig-link{ display:block; }
+.fig-link:hover img{ box-shadow: 0 10px 24px rgba(17,24,39,0.12); }
+
+/* 图注（可选） */
+.fig-cap{
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 6px 0 0;
+}
+
+/* 小屏时，强制图块全宽且居中，避免右对齐看着怪 */
+@media (max-width: 820px){
+  .fig-w-80, .fig-w-70, .fig-w-60, .fig-w-50{ width: 100%; }
+  .fig-left, .fig-center, .fig-right{ justify-self: stretch; }
+}
