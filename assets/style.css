@@ -249,26 +249,27 @@ body{
   margin-top: 38px;
 }
 
+/* ✅ 只改这一行：让 News 标题和 .name-title 一样（其余列表保持原样） */
 .news-title{
   font-family: var(--font-sans);
-  font-weight: 700;
-  text-align: center;
-  color: #7a1738;            /* 酒红色，接近截图 */
-  font-size: 26px;
-  margin: 10px 0 18px;
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--text);
+  text-align: left;
+  margin: 28px 0 10px;
 }
 
 .news-list{
   list-style: square;
   padding-left: 28px;
   margin: 0 auto;
-  max-width: 980px;          /* 让列表不要铺太宽，像截图那样更聚焦 */
+  max-width: 980px;          /* 列表宽度聚焦（保持你现状） */
 }
 
 .news-list li{
   margin: 10px 0;
   line-height: 1.7;
-  font-size: 18px;           /* 和你 index 段落一致 */
+  font-size: 18px;           /* 和 index 段落一致 */
 }
 
 .news-date{
@@ -287,6 +288,6 @@ body{
 
 /* 小屏稍微缩一点 */
 @media (max-width: 820px){
-  .news-title{ font-size: 22px; }
+  .news-title{ font-size: 22px; }  /* 标题保持 22px（和 name-title 同款） */
   .news-list li{ font-size: 17px; }
 }
