@@ -96,7 +96,7 @@ body{
 .brand-name{
   font-family: var(--font-sans);
   font-weight: 600;     /* 很粗的黑体 */
-  font-size: 24px;
+  font-size: 22px;
   white-space: nowrap;  /* 不换行，避免顶栏高度变大 */
 }
 
@@ -165,7 +165,7 @@ body{
 .name-title{
   font-family: var(--font-sans);
   font-weight: 600;
-  font-size: 24px;
+  font-size: 22px;
   margin: 0 0 10px;
 }
 
