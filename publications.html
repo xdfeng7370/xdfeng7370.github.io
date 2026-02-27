@@ -44,13 +44,28 @@
         <span class="brand-name">Xiaodong Feng (冯晓东)</span>
       </div>
 
-      <nav class="nav">
+      <!-- ✅ 大屏导航（小屏会被 CSS 隐藏） -->
+      <nav class="nav nav-desktop" id="topNav">
         <a href="index.html">About</a>
         <a href="research.html">Research</a>
         <a class="active" href="publications.html">Publications</a>
         <a href="talks.html">Talks</a>
         <a href="assets/CV.pdf" target="_blank" rel="noopener">CV</a>
       </nav>
+
+      <!-- ✅ 小屏 hamburger（大屏会被 CSS 隐藏） -->
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        &#9776;
+      </button>
+
+      <!-- ✅ 小屏下拉菜单（默认隐藏） -->
+      <div class="nav-menu" id="navMenu" aria-hidden="true">
+        <a href="index.html">About</a>
+        <a href="research.html">Research</a>
+        <a class="active" href="publications.html">Publications</a>
+        <a href="talks.html">Talks</a>
+        <a href="assets/CV.pdf" target="_blank" rel="noopener">CV</a>
+      </div>
     </div>
   </header>
 
@@ -133,6 +148,41 @@
 
     subOl.innerHTML = submitted.map(p=>`<li>${renderItem(p)}</li>`).join("");
     pubOl.innerHTML = published.map(p=>`<li>${renderItem(p)}</li>`).join("");
+  </script>
+
+  <!-- ✅ 复用 index 的折叠菜单 JS -->
+  <script>
+    (function(){
+      const btn = document.getElementById('navToggle');
+      const menu = document.getElementById('navMenu');
+      if(!btn || !menu) return;
+
+      function closeMenu(){
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+        menu.setAttribute('aria-hidden','true');
+      }
+
+      btn.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+        menu.setAttribute('aria-hidden', String(!isOpen));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!menu.classList.contains('open')) return;
+        if (menu.contains(e.target) || btn.contains(e.target)) return;
+        closeMenu();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.matchMedia('(min-width: 981px)').matches) closeMenu();
+      });
+    })();
   </script>
 </body>
 </html>
