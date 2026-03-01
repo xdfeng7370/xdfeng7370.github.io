@@ -3,51 +3,78 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Publications | Your Name</title>
+  <title>Publications | Xiaodong Feng</title>
   <link rel="stylesheet" href="assets/style.css" />
 
   <style>
-    /* section title like your screenshot */
     .pub-section{
       color:#b91c1c;
       font-weight:800;
       margin: 18px 0 10px;
+      font-family: var(--font-sans, inherit);
     }
 
-    /* list style: "107, ..." */
+    /* ✅ publications 列表字体/行距：与 index 的 section p 一致 */
     ol.pub-list{
       margin: 0;
       padding-left: 2.3em;
-      line-height: 1.75;
       list-style: decimal;
+
+      font-size: 18px;
+      line-height: 1.85;
     }
     ol.pub-list li{ margin: 10px 0; }
     ol.pub-list li::marker{
       content: counter(list-item) ", ";
       font-weight: 800;
+      font-family: var(--font-sans, inherit);
     }
 
-    .pub-title{ font-weight: 600; }
-    .pub-note{ font-weight: 800; }
-    .pub-link{ text-decoration: underline; font-weight: 600; color: inherit; }
+    /* 兼容：有链接用 a.pub-title；无链接用 span.pub-title */
+    a.pub-title{
+      font-weight: 800;
+      text-decoration: underline;
+      color: inherit;
+    }
+    a.pub-title:hover{ opacity: .9; }
+
+    span.pub-title{
+      font-weight: 800;
+    }
   </style>
 </head>
 
 <body>
-  <!-- Top bar (keep your existing one if you already have it) -->
   <header class="topbar">
-    <div class="brand">
-      <img class="avatar" src="assets/avatar.jpg" alt="avatar" />
-      <span class="brand-name">Your Name</span>
+    <div class="topbar-inner">
+      <div class="brand">
+        <img class="avatar" src="assets/fengxiaodong.jpg" alt="avatar" />
+        <span class="brand-name">Xiaodong Feng (冯晓东)</span>
+      </div>
+
+      <!-- ✅ 大屏导航（小屏会被 CSS 隐藏） -->
+      <nav class="nav nav-desktop" id="topNav">
+        <a href="index.html">About</a>
+        <a href="research.html">Research</a>
+        <a class="active" href="publications.html">Publications</a>
+        <a href="talks.html">Talks</a>
+        <a href="assets/CV.pdf" target="_blank" rel="noopener">CV</a>
+      </nav>
+
+      <!-- ✅ 小屏 hamburger（大屏会被 CSS 隐藏） -->
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        &#9776;
+      </button>
+
+      <!-- ✅ 小屏下拉菜单（默认隐藏） -->
+      <div class="nav-menu" id="navMenu" aria-hidden="true">
+        <a href="index.html">About</a>
+        <a href="research.html">Research</a>
+        <a class="active" href="publications.html">Publications</a>
+        <a href="talks.html">Talks</a>
+        <a href="assets/CV.pdf" target="_blank" rel="noopener">CV</a>
+      </div>
     </div>
-    <nav class="nav">
-      <a href="/">About</a>
-      <a class="active" href="publications.html">Publications</a>
-      <a href="students.html">Students</a>
-      <a href="editorships.html">Editorships & Committees</a>
-      <a href="honors.html">Honors</a>
-      <a href="lectures.html">Lectures</a>
-    </nav>
   </header>
 
   <main class="container">
@@ -280,7 +307,7 @@
         status: "published",
         year: 2018,
         authors: "L Guo, A Narayan, T Zhou",
-        title: "A gradient enhanced ℓ1-minimization for sparse approximation of polynomial chaos expansions",
+        title: "A gradient enhanced \u21131-minimization for sparse approximation of polynomial chaos expansions",
         venue: "Journal of Computational Physics 367, 49–64"
       },
       {
@@ -294,14 +321,14 @@
         status: "published",
         year: 2017,
         authors: "L Guo, Y Liu, L Yan",
-        title: "Sparse Recovery via ℓq-Minimization for Polynomial Chaos Expansions",
+        title: "Sparse Recovery via \u2113q-Minimization for Polynomial Chaos Expansions",
         venue: "Numerical Mathematics: Theory, Methods and Applications 10(4), 775–797"
       },
       {
         status: "published",
         year: 2017,
         authors: "L Guo, A Narayan, T Zhou, Y Chen",
-        title: "Stochastic Collocation Methods via ℓ1 Minimization Using Randomized Quadratures",
+        title: "Stochastic Collocation Methods via \u21131 Minimization Using Randomized Quadratures",
         venue: "SIAM Journal on Scientific Computing 39(1), A333–A359"
       },
       {
@@ -322,7 +349,7 @@
         status: "published",
         year: 2012,
         authors: "L Yan, L Guo, D Xiu",
-        title: "STOCHASTIC COLLOCATION ALGORITHMS USING ℓ1-MINIMIZATION",
+        title: "STOCHASTIC COLLOCATION ALGORITHMS USING \u21131-MINIMIZATION",
         venue: "International Journal for Uncertainty Quantification 2(3)"
       },
       {
@@ -369,49 +396,69 @@
       }
     ];
 
-    function esc(s){
-      return (s || "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#39;");
-    }
+    const esc = s => (s||"")
+      .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;").replaceAll("'","&#39;");
 
-    function sortFn(a,b){
-      if ((b.year||0) !== (a.year||0)) return (b.year||0) - (a.year||0);
-      return (a.title||"").localeCompare(b.title||"");
-    }
+    const sortFn = (a,b)=> ((b.year||0)-(a.year||0)) || (a.title||"").localeCompare(b.title||"");
 
-    function renderItem(p){
-      const title = `<span class="pub-title">${esc(p.title)}</span>`;
-      const authors = esc(p.authors);
-      const venue = esc(p.venue);
-      const year = p.year ? esc(String(p.year)) : "";
-      let link = "";
-      if (p.link){
-        const txt = esc(p.linkText || p.link);
-        link = ` <a class="pub-link" href="${esc(p.link)}" target="_blank" rel="noopener">${txt}</a>`;
-      }
-      // Authors, Title, venue, year. (matching screenshot sentence style)
-      return `${authors}, ${title}, ${venue}${link}, ${year}.`;
-    }
+    const renderItem = p => {
+      const url = (p.url || p.link || "").trim();
+      const venue = (p.linkText ? `${p.venue} ${p.linkText}` : p.venue);
 
-    const submitted = pubs.filter(p => p.status === "submitted").sort(sortFn);
-    const published = pubs.filter(p => p.status === "published").sort(sortFn);
+      const titleHtml = url
+        ? `<a class="pub-title" href="${esc(url)}" target="_blank" rel="noopener">${esc(p.title)}</a>`
+        : `<span class="pub-title">${esc(p.title)}</span>`;
+
+      return `${esc(p.authors)}, ${titleHtml}, ${esc(venue)}, ${esc(String(p.year||""))}.`;
+    };
+
+    const submitted = pubs.filter(p=>p.status==="submitted").sort(sortFn);
+    const published = pubs.filter(p=>p.status==="published").sort(sortFn);
 
     const total = submitted.length + published.length;
-    const submittedStart = total;
-    const publishedStart = total - submitted.length;
-
     const subOl = document.getElementById("submittedList");
     const pubOl = document.getElementById("publishedList");
 
-    subOl.setAttribute("start", submittedStart);
-    pubOl.setAttribute("start", publishedStart);
+    subOl.setAttribute("start", total);
+    pubOl.setAttribute("start", total - submitted.length);
 
-    subOl.innerHTML = submitted.map(p => `<li>${renderItem(p)}</li>`).join("");
-    pubOl.innerHTML = published.map(p => `<li>${renderItem(p)}</li>`).join("");
+    subOl.innerHTML = submitted.map(p=>`<li>${renderItem(p)}</li>`).join("");
+    pubOl.innerHTML = published.map(p=>`<li>${renderItem(p)}</li>`).join("");
+  </script>
+
+  <script>
+    (function(){
+      const btn = document.getElementById('navToggle');
+      const menu = document.getElementById('navMenu');
+      if(!btn || !menu) return;
+
+      function closeMenu(){
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+        menu.setAttribute('aria-hidden','true');
+      }
+
+      btn.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+        menu.setAttribute('aria-hidden', String(!isOpen));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!menu.classList.contains('open')) return;
+        if (menu.contains(e.target) || btn.contains(e.target)) return;
+        closeMenu();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.matchMedia('(min-width: 981px)').matches) closeMenu();
+      });
+    })();
   </script>
 </body>
 </html>
