@@ -30,13 +30,19 @@
       font-family: var(--font-sans, inherit);
     }
 
-    /* Title clickable */
+    /* ✅ Title: NOT bold (keep underline) */
     a.pub-title{
-      font-weight: 800;
+      font-weight: 400;          /* <-- no bold */
       text-decoration: underline;
       color: inherit;
     }
     a.pub-title:hover{ opacity: .9; }
+
+    /* ✅ Venue / journal: bold */
+    .pub-venue{
+      font-weight: 800;
+      font-family: var(--font-sans, inherit);
+    }
   </style>
 </head>
 
@@ -89,6 +95,7 @@
     // - Paper title is clickable:
     //    - use p.url if provided
     //    - otherwise fallback to Google Scholar search by title
+    // - Venue/journal is bold via <span class="pub-venue">...</span>
 
     const pubs = [
       // ===================== Submitted =====================
@@ -169,7 +176,6 @@
         authors:["Xintong Wang","Xiaofei Guan","Ling Guo","Hao Wu"],
         title:"Flow-based Bayesian filtering for high-dimensional nonlinear stochastic dynamical systems",
         venue:"Computer Methods in Applied Mechanics and Engineering 446, 118285"
-        // url omitted -> fallback to Scholar search by title
       },
       {
         status:"published", year:2026,
@@ -370,7 +376,8 @@
       const href = paperUrl(p);
       const authors = renderAuthorsPlain(p.authors);
       const title = `<a class="pub-title" href="${esc(href)}" target="_blank" rel="noopener">${esc(p.title)}</a>`;
-      return `${authors}, ${title}, ${esc(p.venue)}, ${esc(String(p.year))}.`;
+      const venue = `<span class="pub-venue">${esc(p.venue)}</span>`;
+      return `${authors}, ${title}, ${venue}, ${esc(String(p.year))}.`;
     };
 
     const submitted = pubs.filter(p=>p.status==="submitted").sort(sortFn);
