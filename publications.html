@@ -7,9 +7,13 @@
   <link rel="stylesheet" href="assets/style.css" />
 
   <style>
+    /* ✅ 全部不加粗：本页覆盖所有字体为 normal */
+    body, main, h1, h2, ol, li, span, a, strong, b{
+      font-weight: 400 !important;
+    }
+
     .pub-section{
       color:#b91c1c;
-      font-weight:800;
       margin: 18px 0 10px;
       font-family: var(--font-sans, inherit);
     }
@@ -24,25 +28,21 @@
       line-height: 1.85;
     }
     ol.pub-list li{ margin: 10px 0; }
+
+    /* ✅ marker 也不加粗 */
     ol.pub-list li::marker{
       content: counter(list-item) ", ";
-      font-weight: 800;
+      font-weight: 400 !important;
       font-family: var(--font-sans, inherit);
     }
 
-    /* ✅ Title: NOT bold (keep underline) */
+    /* Title clickable (no bold) */
     a.pub-title{
-      font-weight: 400;          /* <-- no bold */
+      font-weight: 400 !important;
       text-decoration: underline;
       color: inherit;
     }
     a.pub-title:hover{ opacity: .9; }
-
-    /* ✅ Venue / journal: bold */
-    .pub-venue{
-      font-weight: 800;
-      font-family: var(--font-sans, inherit);
-    }
   </style>
 </head>
 
@@ -95,7 +95,7 @@
     // - Paper title is clickable:
     //    - use p.url if provided
     //    - otherwise fallback to Google Scholar search by title
-    // - Venue/journal is bold via <span class="pub-venue">...</span>
+    // - Everything is rendered in normal weight (no bold).
 
     const pubs = [
       // ===================== Submitted =====================
@@ -353,10 +353,6 @@
       }
     ];
 
-    const esc = s => (s||"")
-      .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;").replaceAll("'","&#39;");
-
     const sortFn = (a,b)=> ((b.year||0)-(a.year||0)) || (a.title||"").localeCompare(b.title||"");
 
     const scholarTitleUrl = (title) =>
@@ -376,8 +372,7 @@
       const href = paperUrl(p);
       const authors = renderAuthorsPlain(p.authors);
       const title = `<a class="pub-title" href="${esc(href)}" target="_blank" rel="noopener">${esc(p.title)}</a>`;
-      const venue = `<span class="pub-venue">${esc(p.venue)}</span>`;
-      return `${authors}, ${title}, ${venue}, ${esc(String(p.year))}.`;
+      return `${authors}, ${title}, ${esc(p.venue)}, ${esc(String(p.year))}.`;
     };
 
     const submitted = pubs.filter(p=>p.status==="submitted").sort(sortFn);
