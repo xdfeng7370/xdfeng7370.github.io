@@ -148,7 +148,7 @@
       }
 
       function sortFn(a,b){
-        return ((b.year||0)-(a.year||0)) || String(a.title||"").localeCompare(String(b.title||""));
+        return (b.year || 0) - (a.year || 0);
       }
 
       function renderItem(p){
