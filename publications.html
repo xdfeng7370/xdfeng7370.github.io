@@ -87,62 +87,111 @@
   <script>
     (function () {
       const pubs = [
-        // Submitted
-        { status:"submitted", year:2026,
-          authors:"Tiangang Cui, Xiaodong Feng, Chenlong Pei, Xiaoliang Wan, and Tao Zhou",
-          title:"Amortized Filtering and Smoothing with Conditional Normalizing Flow",
-          venue:"arXiv preprint arXiv:2604.07169",
-          url:"https://arxiv.org/abs/2604.07169" },
-
-        { status:"submitted", year:2026,
-          authors:"Wenwen Zhou, Xiaodong Feng, Ling Guo, and Hao Wu",
-          title:"Latent representation learning based model correction and uncertainty quantification for PDEs",
-          venue:"arXiv preprint arXiv:2603.24948",
-          url:"https://arxiv.org/abs/2603.24948" },
-        
-        { status:"submitted", year:2025,
-          authors:"Xiaodong Feng, Tao Tang, Xiaoliang Wan, and Tao Zhou",
-          title:"Overcoming Spectral Bias via Cross-Attention",
-          venue:"arXiv preprint arXiv:2512.18586",
-          url:"https://arxiv.org/abs/2512.18586" },
-
-        { status:"submitted", year:2025,
-          authors:"Xiaodong Feng, Ling Guo, Xiaoliang Wan, Hao Wu, Tao Zhou, and Wenwen Zhou",
-          title:"LVM-GP: Uncertainty-Aware PDE Solver via coupling latent variable model and Gaussian process",
-          venue:"arXiv preprint arXiv:2507.22493",
-          url:"https://arxiv.org/abs/2507.22493" },
-
-        { status:"submitted", year:2024,
-          authors:"Xiaodong Feng, Haojiong Shangguan, Tao Tang, Xiaoliang Wan, and Tao Zhou",
-          title:"A hybrid FEM-PINN method for time-dependent partial differential equations",
-          venue:"arXiv preprint arXiv:2409.02810",
-          url:"https://arxiv.org/abs/2409.02810" },
-
-        // Published
-        { status:"published", year:2026,
-          authors:"Xiaodong Feng, Haojiong Shangguan, Tao Tang, and Xiaoliang Wan",
-          title:"Integral Regularization PINNs for Evolution Equations",
-          venue:"Communications in Computational Physics, 39(2):356–386, 2026",
-          url:"https://global-sci.com/index.php/cicp/article/view/23347" },
-
-        { status:"published", year:2023,
-          authors:"Xiaodong Feng, Yue Qian, and Wanfang Shen",
-          title:"MC-Nonlocal-PINNs: Handling Nonlocal Operators in PINNs via Monte Carlo Sampling",
-          venue:"Numerical Mathematics: Theory, Methods and Applications, 16(3):769–791, 2023",
-          url:"https://global-sci.com/index.php/nmtma/article/view/14453" },
-
-        { status:"published", year:2022,
-          authors:"Xiaodong Feng and Li Zeng",
-          title:"Gradient-enhanced deep neural network approximations",
-          venue:"Journal of Machine Learning for Modeling and Computing, 3(4), 2022",
-          url:"https://www.dl.begellhouse.com/journals/558048804a15188a,22e553d25a1b5ff0,6658196f7b72ef2f.html" },
-
-        { status:"published", year:2022,
-          authors:"Xiaodong Feng, Li Zeng, and Tao Zhou",
-          title:"Solving Time Dependent Fokker-Planck Equations via Temporal Normalizing Flow",
-          venue:"Communications in Computational Physics, 32(2):401–423, 2022",
-          url:"https://global-sci.com/cicp/article/view/7087" }
-      ];
+  {
+    "status": "submitted",
+    "year": 2026,
+    "authors": "Xiaodong Feng and Ling Guo",
+    "title": "Event Statistics for Neural Metropolis–Hastings Sampling of Rare-Event Paths",
+    "venue": "Preprint",
+    "url": ""
+  },
+  {
+    "status": "submitted",
+    "year": 2026,
+    "authors": "Xiaodong Feng and Ling Guo",
+    "title": "Rare-Event Path Sampling with Sequential Conditional Normalizing Flows",
+    "venue": "Submitted to SIAM Journal on Scientific Computing",
+    "url": ""
+  },
+  {
+    "status": "submitted",
+    "year": 2026,
+    "authors": "Xiaodong Feng and Ziyu Sun",
+    "title": "Amortized Bayesian State and Parameter Inference in State-Space Models",
+    "venue": "Submitted to Computer Methods in Applied Mechanics and Engineering",
+    "url": ""
+  },
+  {
+    "status": "submitted",
+    "year": 2026,
+    "authors": "Xiaodong Feng, Ziyu Sun, Tao Tang, and Xiaoliang Wan",
+    "title": "CI-PINN: Causal Integral Physics-Informed Neural Network for Solving Evolution Equations",
+    "venue": "Submitted to Communications in Computational Physics",
+    "url": "https://arxiv.org/abs/2609.36615"
+  },
+  {
+    "status": "submitted",
+    "year": 2026,
+    "authors": "Tiangang Cui, Xiaodong Feng, Chenlong Pei, Xiaoliang Wan, and Tao Zhou",
+    "title": "Amortized Filtering and Smoothing with Conditional Normalizing Flows",
+    "venue": "Submitted to SIAM/ASA Journal on Uncertainty Quantification",
+    "url": "https://arxiv.org/abs/2604.07169"
+  },
+  {
+    "status": "submitted",
+    "year": 2025,
+    "authors": "Xiaodong Feng, Ling Guo, Xiaoliang Wan, Hao Wu, Tao Zhou, and Wenwen Zhou",
+    "title": "LVM-GP: Uncertainty-Aware PDE Solver via coupling latent variable model and Gaussian process",
+    "venue": "Submitted to Journal of Computational Physics",
+    "url": "https://arxiv.org/abs/2507.22493"
+  },
+  {
+    "status": "published",
+    "year": 2027,
+    "authors": "Wenwen Zhou, Xiaodong Feng, Ling Guo, and Hao Wu",
+    "title": "Latent representation learning-based model correction and uncertainty quantification for PDEs",
+    "venue": "Journal of Computational Physics, 569, Part 2:115484",
+    "url": "https://doi.org/10.1016/j.jcp.2026.115484"
+  },
+  {
+    "status": "published",
+    "year": 2026,
+    "authors": "Xiaodong Feng, Haojiong Shangguan, Tao Tang, and Xiaoliang Wan",
+    "title": "Integral Regularization PINNs for Evolution Equations",
+    "venue": "Communications in Computational Physics, 39(2):356–386",
+    "url": "https://global-sci.com/index.php/cicp/article/view/23347"
+  },
+  {
+    "status": "published",
+    "year": 2026,
+    "authors": "Xiaodong Feng, Haojiong Shangguan, Tao Tang, and Xiaoliang Wan",
+    "title": "A hybrid FEM-PINN method for time-dependent partial differential equations",
+    "venue": "Communications in Computational Physics, accepted",
+    "url": "https://arxiv.org/abs/2409.02810"
+  },
+  {
+    "status": "published",
+    "year": 2026,
+    "authors": "Xiaodong Feng, Tao Tang, Xiaoliang Wan, and Tao Zhou",
+    "title": "Overcoming Spectral Bias via Cross-Attention",
+    "venue": "Journal of Intelligent Algorithms and Scientific Computing",
+    "url": "https://arxiv.org/abs/2512.18586"
+  },
+  {
+    "status": "published",
+    "year": 2023,
+    "authors": "Xiaodong Feng, Yue Qian, and Wanfang Shen",
+    "title": "MC-Nonlocal-PINNs: Handling Nonlocal Operators in PINNs via Monte Carlo Sampling",
+    "venue": "Numerical Mathematics: Theory, Methods and Applications, 16(3):769–791",
+    "url": "https://global-sci.com/index.php/nmtma/article/view/14453"
+  },
+  {
+    "status": "published",
+    "year": 2022,
+    "authors": "Xiaodong Feng and Li Zeng",
+    "title": "Gradient-enhanced deep neural network approximations",
+    "venue": "Journal of Machine Learning for Modeling and Computing, 3(4):73–91",
+    "url": "https://www.dl.begellhouse.com/journals/558048804a15188a,22e553d25a1b5ff0,6658196f7b72ef2f.html"
+  },
+  {
+    "status": "published",
+    "year": 2022,
+    "authors": "Xiaodong Feng, Li Zeng, and Tao Zhou",
+    "title": "Solving Time Dependent Fokker-Planck Equations via Temporal Normalizing Flow",
+    "venue": "Communications in Computational Physics, 32(2):401–423",
+    "url": "https://global-sci.com/cicp/article/view/7087"
+  }
+];
 
       function esc(s){
         return String(s ?? "")
@@ -158,7 +207,9 @@
       }
 
       function renderItem(p){
-        const title = `<a class="pub-title" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>`;
+        const title = p.url
+          ? `<a class="pub-title" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>`
+          : `<span class="pub-title">${esc(p.title)}</span>`;
         return `${esc(p.authors)}, ${title}, ${esc(p.venue)}, ${esc(String(p.year))}.`;
       }
 
