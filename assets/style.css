@@ -286,6 +286,31 @@ body{
   opacity: .9;
 }
 
+.news-controls{
+  max-width: 980px;
+  margin: 12px auto 0;
+  padding-left: 28px;
+}
+
+.news-toggle{
+  border: 0;
+  padding: 4px 0;
+  background: none;
+  color: var(--active);
+  font: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.news-toggle:hover{
+  text-decoration: underline;
+}
+
+.news-toggle:focus-visible{
+  outline: 2px solid var(--active);
+  outline-offset: 4px;
+}
+
 /* 小屏稍微缩一点 */
 @media (max-width: 820px){
   .news-title{ font-size: 22px; }  /* 标题保持 22px（和 name-title 同款） */

@@ -75,39 +75,52 @@ and my Bachelor’s degree (2019) in Mathematics from Beijing Normal University.
 <section class="news">
   <h2 class="news-title">News and Recent Updates</h2>
 
-  
-  <ul class="news-list">
+  <ul class="news-list" id="newsList">
+    <li>
+      <span class="news-date">11/2026</span>
+      <span class="news-text">
+        Our paper <a href="https://arxiv.org/abs/2512.18586" target="_blank" rel="noopener">“Overcoming Spectral Bias via Cross-Attention”</a>
+        has been accepted for publication in <em>Journal of Intelligent Algorithms and Scientific Computing</em>.
+      </span>
+    </li>
 
-            <li>
+    <li>
+      <span class="news-date">10/2026</span>
+      <span class="news-text">
+        Our paper <a href="https://doi.org/10.1016/j.jcp.2026.115484" target="_blank" rel="noopener">“Latent representation learning-based model correction and uncertainty quantification for PDEs”</a>
+        has been accepted for publication in <em>Journal of Computational Physics</em>.
+      </span>
+    </li>
+
+    <li>
+      <span class="news-date">09/2026</span>
+      <span class="news-text">
+        Our new preprint <a href="https://arxiv.org/abs/2609.36615" target="_blank" rel="noopener">“CI-PINN: Causal Integral Physics-Informed Neural Network for Solving Evolution Equations”</a>
+        is now on arXiv.
+      </span>
+    </li>
+
+    <li>
+      <span class="news-date">06/2026</span>
+      <span class="news-text">
+        Our paper <a href="https://arxiv.org/abs/2409.02810" target="_blank" rel="noopener">“A hybrid FEM-PINN method for time-dependent partial differential equations”</a>
+        has been accepted for publication in <em>Communications in Computational Physics</em>.
+      </span>
+    </li>
+
+    <li>
       <span class="news-date">04/2026</span>
       <span class="news-text">
-        Our new preprint <a href="https://arxiv.org/abs/2604.07169" target="_blank" rel="noopener">“Amortized Filtering and Smoothing with Conditional Normalizing Flows
-”</a>
-        is now on arXiv (arXiv:2604.07169).
+        Our new preprint <a href="https://arxiv.org/abs/2604.07169" target="_blank" rel="noopener">“Amortized Filtering and Smoothing with Conditional Normalizing Flows”</a>
+        is now on arXiv.
       </span>
     </li>
-    
-        <li>
-      <span class="news-date">03/2026</span>
-      <span class="news-text">
-        Our new preprint <a href="https://arxiv.org/abs/2603.24948" target="_blank" rel="noopener">“Latent representation learning based model correction and uncertainty quantification for PDEs”</a>
-        is now on arXiv (arXiv:2603.24948).
-      </span>
-    </li>
-    
+
     <li>
       <span class="news-date">02/2026</span>
       <span class="news-text">
         Our paper <a href="https://global-sci.com/index.php/cicp/article/view/23347" target="_blank" rel="noopener">“Integral Regularization PINNs for Evolution Equations”</a>
         is now online in <em>Communications in Computational Physics</em>.
-      </span>
-    </li>
-
-    <li>
-      <span class="news-date">12/2025</span>
-      <span class="news-text">
-        Our new preprint <a href="https://arxiv.org/abs/2512.18586" target="_blank" rel="noopener">“Overcoming Spectral Bias via Cross-Attention”</a>
-        is now on arXiv (arXiv:2512.18586).
       </span>
     </li>
 
@@ -118,15 +131,42 @@ and my Bachelor’s degree (2019) in Mathematics from Beijing Normal University.
         <a href="https://arxiv.org/abs/2507.22493" target="_blank" rel="noopener">
           “LVM-GP: Uncertainty-Aware PDE Solver via Coupling Latent Variable Model and Gaussian Process”
         </a>
-        is now on arXiv (arXiv:2507.22493).
+        is now on arXiv.
       </span>
     </li>
   </ul>
+  <div class="news-controls" id="newsControls" hidden>
+    <button class="news-toggle" id="newsToggle" type="button" aria-expanded="false" aria-controls="newsList">Show older news</button>
+  </div>
 </section>
     
   </main>
 
   <script>
+    (function(){
+      const list = document.getElementById('newsList');
+      const controls = document.getElementById('newsControls');
+      const button = document.getElementById('newsToggle');
+      if (!list || !controls || !button) return;
+
+      const olderItems = Array.from(list.children).slice(8);
+      if (!olderItems.length) return;
+
+      let expanded = false;
+      function updateNews(){
+        olderItems.forEach(item => { item.hidden = !expanded; });
+        button.setAttribute('aria-expanded', String(expanded));
+        button.textContent = expanded ? 'Show less' : `Show older news (${olderItems.length})`;
+      }
+
+      updateNews();
+      controls.hidden = false;
+      button.addEventListener('click', () => {
+        expanded = !expanded;
+        updateNews();
+      });
+    })();
+
     (function(){
       const btn = document.getElementById('navToggle');
       const menu = document.getElementById('navMenu');
